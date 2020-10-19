@@ -1,61 +1,65 @@
 @charset "UTF-8";
-#feedBoardArea{
-	
-}
-#lastFeed{
+
+#lastFeed {
 	width: 45%;
-	height : 300px;
-	float : left;
-	margin:0;
-	padding:0;
+	height: 300px;
+	float: left;
+	margin: 0;
+	padding: 0;
 }
 
-#myFeed{
-	display:hidden;
-	width:45%;
-	height : 300px;
-	float : left;
-	margin:0;
-	padding:0;
+#myFeed {
+	display: hidden;
+	width: 45%;
+	height: 300px;
+	float: left;
+	margin: 0;
+	padding: 0;
 }
-#myTrainer{
-	height : 140px;
+
+#myTrainer {
+	height: 140px;
 	clear: both;
 	width: 100%;
 }
 
-#feedNav{
-	width : 100%;
-	height : 40px;
-	
+#feedNav {
+	width: 100%;
+	height: 40px;
 }
-#feedbtnDiv{
-	float : left;
-	width : 45%;
+#feedBoardArea{
+	background-color: rgba(255,0,0,0.1);
 }
-#searchDiv{
-	height:auto;
-	float : right;
-	width : 45%;
+#feedbtnDiv {
+	float: left;
+	width: 45%;
+}
+
+#searchDiv {
+	height: auto;
+	float: right;
+	width: 45%;
 	text-align: right;
 }
-#feedbtnDiv>button{
 
-	width:30%;
+#feedbtnDiv>button {
+	width: 30%;
 }
 
-#allFeedView{
-	background-color : rgba(255,0,0,0.1);
+#allFeedView {
+	background-color: rgba(255, 0, 0, 0.1);
 	border: none;
 	line-height: 40px;
 }
-#followFeedView{
-	background-color: rgba(0,255,0,0.1);
-	border : none;
+
+#followFeedView {
+	background-color: rgba(0, 255, 0, 0.1);
+	border: none;
 	line-height: 40px;
 }
-#followerFeedView{
-	background-color: rgba(0,0,255,0.1);
-	border:none;
+
+#followerFeedView {
+	background-color: rgba(0, 0, 255, 0.1);
+	border: none;
 	line-height: 40px;
 }

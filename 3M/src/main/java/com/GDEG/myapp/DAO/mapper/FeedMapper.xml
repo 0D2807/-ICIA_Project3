@@ -36,7 +36,4 @@
  	<select id="lastFeed" parameterType="String" resultType="feed">
  	SELECT * FROM FEED WHERE FID=#{id}  
  	</select>
- 	<select id="feedmodify" parameterType="String" resultType="feed">
- 		SELECT * FROM FEED WHERE FID=#{id}
- 	</select>
  </mapper>

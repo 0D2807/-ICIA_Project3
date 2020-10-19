@@ -2,7 +2,6 @@ package com.GDEG.myapp.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,11 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.GDEG.myapp.DAO.FollowerDAO;
 import com.GDEG.myapp.DAO.feedDAO;
 import com.GDEG.myapp.DAO.likeDAO;
-
-import com.GDEG.myapp.DAO.mDAO;
 import com.GDEG.myapp.DAO.memberDAO;
 import com.GDEG.myapp.DTO.FeedDTO;
-import com.GDEG.myapp.DTO.FollowerDTO;
 import com.GDEG.myapp.DTO.likeDTO;
 import com.GDEG.myapp.DTO.memberDTO;
 @Service
@@ -30,18 +26,20 @@ public class FeedService {
 	private feedDAO fdao;
 
 	@Autowired
-	private likeDAO lidao;
+	private FollowerDAO pdao;
 	
 	@Autowired
 	private memberDAO cdao;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	private likeDAO lidao;
 	
 	// 피드 작성
 	public ModelAndView feedWriterFile(FeedDTO feed) throws IllegalStateException,IOException {
 		MultipartFile ffile = feed.getFile();
 		String fileName = ffile.getOriginalFilename();
-		String savePath ="C:/Users/1/Documents/workspace-spring-tool-suite-4-4.7.1.RELEASE/3M/webapp/resources/fileUpload/"+fileName;
+		String savePath ="C:/Users/1/Documents/workspace-spring-tool-suite-4-4.7.1.RELEASE/3M/src/main/webapp/resources/fileUpload/"+fileName;
 		
 		if(!ffile.isEmpty()) {
 			ffile.transferTo(new File(savePath));
@@ -61,21 +59,19 @@ public class FeedService {
 	public ModelAndView getView() {
 		String id = (String)session.getAttribute("loginId");
 		
-		FeedDTO feedmodify = fdao.feedmodify(id);
 		// 피드목록
 		List<FeedDTO> MyFeedList = fdao.myFeed(id);
-		System.out.println("MyFeedList : " + MyFeedList);
 		// 전체 피드
 		List<FeedDTO> feed = fdao.allFeedView();
-		System.out.println("feed : " + feed);
 		// 트레이너 정보
 		List<memberDTO> trainer = cdao.trasiner(id);
-		System.out.println("trainer : " + trainer);
+//		좋아요 목록 가져오기
+		List<likeDTO> like = lidao.alllike();
 		if(feed != null) {
 			mav.addObject("feeds", feed);
 			mav.addObject("MyFeedList",MyFeedList);
 			mav.addObject("trainer",trainer);
-			mav.addObject("feedmodify", feedmodify);
+			mav.addObject("like", like);
 			mav.setViewName("feed");
 		}
 		return mav;
@@ -83,10 +79,9 @@ public class FeedService {
 	
 	// 피드 수정
 	public ModelAndView ModifyProcess(FeedDTO feed) throws IllegalStateException, IOException {
-		System.out.println("feed : " + feed);
 		MultipartFile bfile = feed.getFile();
 		String fileName = bfile.getOriginalFilename();
-		String savePath = "C:/Users/1/Documents/workspace-spring-tool-suite-4-4.7.1.RELEASE/3M/webapp/resources/fileUpload/" + fileName;
+		String savePath = "D:/HISTORY/Spring/3M/src/main/webapp/resources/fileUpload/" + fileName;
 
 		if (!bfile.isEmpty()) {
 			bfile.transferTo(new File(savePath));
@@ -110,13 +105,13 @@ public class FeedService {
 		}
 		return mav;
 	}
-
-	
+//	좋아요
 	 public void feedlike(likeDTO like) { 
 
-		 
 		likeDTO likecheck= lidao.feedlikecheck(like); 
-		 if(likecheck==null) { 
+		System.out.println("Ser_likecheck : " + likecheck);
+		
+		if(likecheck==null) { 
 			  lidao.like(like); 
 			 
 		} else { 
@@ -126,8 +121,6 @@ public class FeedService {
 	  
 		 
 	  }
-	 
-
 
 
 

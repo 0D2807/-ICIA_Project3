@@ -40,9 +40,6 @@ public class feedDAO {
 	public List<FeedDTO> lastFeed(String id) {
 		return sql.selectOne("Feed.lastFeed", id);
 	}
-	public FeedDTO feedmodify(String id) {
-		return sql.selectOne("Feed.feedmodify", id);
-	}
 	
 	
 

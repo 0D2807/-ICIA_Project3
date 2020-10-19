@@ -11,10 +11,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/sidebar.css" type="text/css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/menubar.css" type="text/css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/feed.css" type="text/css" rel="stylesheet"/>
-<style>
-#reportDiv{
-display:block;}
-</style>
+
 <body>
 <div id="topbanner">
 
@@ -34,7 +31,7 @@ display:block;}
 
 <!-- 로고 -->
 <div id="logo"><a href="mainController">로고</a></div>
-<img alt="로고.png" src="resources/fileUpload/로고(임시).png" width="250px">
+
 
 <div id="loginCheck">
 <c:choose>
@@ -209,7 +206,7 @@ display:block;}
 </c:otherwise>
 </c:choose>
 </div>
-<div id="contents">
+<div id="Contents">
 
 <div id="reportBoard">
 	<div class="contents" id="question">
@@ -238,7 +235,6 @@ display:block;}
 	<button onclick="Inquiry()">1:1문의하기</button>
 	</div>
 	<div id="reportList">
-	</d iv>
 	</div>
 </div>
 </div>

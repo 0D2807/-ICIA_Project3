@@ -12,17 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.GDEG.myapp.DTO.FeedDTO;
 import com.GDEG.myapp.DTO.FollowerDTO;
 import com.GDEG.myapp.DTO.boardDTO;
-import com.GDEG.myapp.DTO.likeDTO;
 import com.GDEG.myapp.DTO.memberDTO;
 import com.GDEG.myapp.Service.FeedService;
 @Controller
-
 public class TController {
 	
 	private ModelAndView mav = new ModelAndView();
@@ -59,9 +56,6 @@ public class TController {
 		mav = fdsvc.FeedDelete(Fnum, id);
 		return mav;
 	}
-	
-
-	 
 	
 
 }

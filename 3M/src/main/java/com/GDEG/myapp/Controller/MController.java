@@ -30,7 +30,7 @@ public class MController {
 	  @RequestMapping(value = "/join", method = RequestMethod.POST) 
 	  public ModelAndView join(@ModelAttribute memberDTO member) throws IllegalStateException, IOException { 
 		mav = msvc.join(member); 
-	   
+		
       return mav; 
 	  }
 	  

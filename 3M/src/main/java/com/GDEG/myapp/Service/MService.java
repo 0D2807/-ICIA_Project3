@@ -31,13 +31,15 @@ public class MService {
 	
 //	회원가입
 	public ModelAndView join(memberDTO member) throws IllegalStateException, IOException {
+		member.setPw(pwEnc.encode(member.getPw()));
+		
+//		String key = getkey(false,20);
+//		member.set
+		
 		
 		
 		MultipartFile file = member.getFile();// 실제로 업로드 된 파일
-		
-		
-		
-		
+			
 		String fileName = file.getOriginalFilename();// 파일이 업로드 될 경우(첨부파일 선택할 경우)
 	
 	

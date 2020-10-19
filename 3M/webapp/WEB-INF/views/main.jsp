@@ -9,24 +9,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <link href="${pageContext.request.contextPath}/resources/css/sidebar.css" type="text/css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/menubar.css" type="text/css" rel="stylesheet"/>
-<link href="${pageContext.request.contextPath}/resources/css/feed.css" type="text/css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" type="text/css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/resources/css/modalWindow.css" type="text/css" rel="stylesheet"/>
+<meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
 
-<style>
-html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, 
-del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, 
-dl, dt, dd, ol, ul, li, fieldset, form, label, legend,button {
- vertical-align: baseline;
- font-family: inherit;
- font-weight: inherit;
- font-style: inherit;
- font-size: 100%;
-
- padding: 0;
- margin: 0;
- border: 0;
- }
-</style>
 </head>
 
 <body onload="load()">
@@ -50,7 +39,7 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend,button {
 
 <!-- 로고 -->
 <div id="logo">
-<img alt="로고.png" src="resources/fileUpload/로고(임시).png" width="150px">
+로고
 </div>
 
 
@@ -58,7 +47,7 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend,button {
 <c:choose>
 	<c:when test="${sessionScope.member != null }">
 	    <input type="checkbox" id="popup">
-<label for="popup"><img src="resources/fileUpload/${member.filename }" id="profile">${member.id }님</label>
+<label for="popup" class="getout"><img src="resources/fileUpload/${member.filename }" id="profile">${member.id }님</label>
 <div>
 	<div id="modify">
 	<img src="resources/fileUpload/${member.filename }" id="img">
@@ -151,78 +140,79 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend,button {
 	<button onclick="location.href='logout'">로그아웃</button>
 	</c:when>
 <c:otherwise>
-<input type="checkbox" id="menuicon">
-<label for="menuicon" id="login">LOGIN</label>
+<div id="checkboxDiv1">
+<input type="checkbox" id="menuicon" onclick="check_action(this, 'loginCheck')" >
+<label for="menuicon" id="login" class="getout">LOGIN</label>
 <div class="sidebar">
 
 <!-- 로그인 -->
 <div class="login">
-<form action="login" method="post">
-	<input type="text"  name="id" placeholder="아이디" id="idform">
-	<input type="password" name="pw" placeholder="비밀번호" id="idform">
-	<input type="submit" value="로그인">
+<form action="login" method="post" name="loginFormAction">
+	<div id="loginform">
+		<input type="text"  name="id" placeholder="아이디" id="idform">
+		<input type="password" name="pw" placeholder="비밀번호" id="idform">
+	</div>
+	<div id="logbtn">
+		<button onclick="joindForm()" id="loginbtn">로<br/>그<br/>인<br/></button>
+	</div>
 </form>
 </div>
 
 </div>
-
-<input type="checkbox" id="menuicon2">
-		<label for="menuicon2" id="signup">SIGNUP</label>
+</div>
+<div id="checkboxDiv2">
+<input type="checkbox" id="menuicon2" onclick="check_action(this, 'loginCheck')" >
+		<label for="menuicon2" id="signup" class="getout">SIGNUP</label>
 <div class="sidebar2">
     <div id="insertDiv">
+   <div id="xcondiv">
+    <input type="checkbox" id="xcon" onclick="check_action(this, 'loginCheck')" >
+    <label for="xcon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+	</div>
+    <div id="signupposi">
 	<form action="join" method="post" enctype="multipart/form-data">
-	<table>
-	<tr>
-		<td><input type="file" name="file"></td>
-	</tr>
-	<tr>
-		<td>
-		<input type="text" name="id" placeholder="아이디" onkeyup="idOverlap()">
-		<span id="confirmId"></span>
-		</td>
-	</tr>
-	<tr>
-		<td><input type="password" name="pw" placeholder="비밀번호"></td>
-	</tr>
-	<tr>
-		<td><input type="text" name="cname" placeholder="이름"></td>
-	</tr>
-	<tr>
-		<td><input type="email" name="email" placeholder="이메일"></td>
-	</tr>
-	<tr>
-		<td><input type="date" name="birth" placeholder="생년월일"></td>
-	</tr>
-	 <tr>
-		<td>
-			헬스
-			<input type="radio" name="health" value="선호">선호
+	<p><input type="file" name="file"></p>
+
+		<p><input type="text" name="id" placeholder="아이디" class="info_input" onkeyup="idOverlap()"></p>
+		<p><span id="confirmId"></span></p>
+
+		<p><input type="password" name="pw" class="info_input" placeholder="비밀번호"></p>
+
+		<p><input type="text" name="cname" class="info_input" placeholder="이름"></p>
+		
+		<p><input type="email" name="email" class="info_input" placeholder="이메일"></p>
+	
+		<p><input type="date" name="birth" class="info_input" placeholder="생년월일"></p>
+		<p>
+			<span class="size">헬스</span>
+			<span class="size2"><input type="radio" name="health" value="선호">선호</span>
 			<input type="radio" name="health" value="비선호">비선호
-		</td>
-	</tr>
-	<tr>
-		<td>
-			피트니스
-			<input type="radio" name="fitness" value="선호">선호
+		</p>
+		<p>
+			<span class="size">피트니스</span>
+			<span class="size2"><input type="radio" name="fitness" value="선호">선호</span>
 			<input type="radio" name="fitness" value="비선호">비선호
-		</td>
-	</tr>
-	<tr>
-		<td>
-			성별
-			<input type="radio" name="gender" value="남">남자
-			<input type="radio" name="gender" value="여">여자
-		</td>
-	</tr>
-		<tr>
-		<td>
-			<input type="text" name="intro" placeholder="한줄소개"/>
-		</td>
-	</tr>
-	</table>
+		</p>
+		<p>
+			<span class="size">성별</span>
+			<span class="size2"><input type="radio" name="gender" value="남">남자</span>
+			<span class="size3"><input type="radio" name="gender" value="여">여자</span>
+
+		</p>
+		<br/>
+		<p>
+			<input type="text" name="intro" class="info_input" placeholder="한줄소개"/>
+		</p>
 	<input type="submit" value="회원가입">
+	
 	</form>
 	</div>
+	</div>
+</div>
 </div>
 </c:otherwise>
 </c:choose>
@@ -230,35 +220,51 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend,button {
 
 </div>
 
-<div id="contents">
 
-</div>
-<div id="ContentsDiv">
+<div id="Contents">
 <div id="Contents-first">
 <div id="weather">날시 API가 들어갈 구역</div>
 <div id="letter">문구 이미지가 png파일로 들어갑니다.</div>
 
 </div>
-<div id="ContentsSeconds">
+<div class="hrTag">
+<hr size="2" color="#eaeaea"/>
+</div>
+
 <div id="trainer">트레이너 정보가 들어가야 하는 지역입니다. 한줄이 나올겁니다.</div>
+<div class="hrTag">
+<hr size="2" color="#eaeaea"/>
+</div>
 <div id="Sales">상품정보가 출력되는 구간입니다. 한줄이 나올겁니다.</div>
 
-</div>
 
 </div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <!-- footer  -->
-<div id="footer">카피라이터 by 3M</div>
+<div id="footer">ⓒ 3M</div>
 </body>
+<script type="text/javascript">
+  /*  체크박스 컨트롤  */
+      function check_action(obj, group) {
+
+        var oBool      = obj.checked;  //선택한 체크박스 checked 값을 변수에 담는다.
+        var oDiv      = document.getElementById(group);  //해당 그룹 div
+        var oNodeList  = oDiv.getElementsByTagName("INPUT");  //div 안에 속해 있는 개체
+
+        /*  해당 그룹에 있는 체크박스 모두 해제  */
+        for (i = 0; i < oNodeList.length; i++)
+        {
+          if (oNodeList[i].type == "checkbox")
+          {
+            oNodeList[i].checked = false;
+          }
+        }
+       
+        /*  선택한 체크박스에 checked 적용  */
+        obj.checked = oBool;
+
+      }
+function joindForm(){
+	loginFormAction.submit();
+}
+</script>
 </html>

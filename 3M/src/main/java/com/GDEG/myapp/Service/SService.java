@@ -170,9 +170,7 @@ String savePath ="D:/js/mySpringFile/3M/webapp/resources/fileUpload/"+fileName;
 
 	public List<FeedDTO> feedSearch(String key) {
 		feed = dao.feedSearch(key);
-		System.out.println("===================================================================================================");
-		System.out.println("Ser_feed : " + feed);
-		System.out.println("===================================================================================================");
+		
 		return feed;
 	}
 }

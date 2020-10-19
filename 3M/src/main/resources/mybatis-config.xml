@@ -9,7 +9,7 @@
 		<typeAlias type="com.GDEG.myapp.DTO.reportDTO" alias="Report"/>
 		<typeAlias type="com.GDEG.myapp.DTO.FeedDTO" alias="feed"/>
 		<typeAlias type="com.GDEG.myapp.DTO.FollowerDTO" alias="follow"/>
-		<typeAlias type="com.GDEG.myapp.DTO.trainerDTO" alias="trainer"/>
 		<typeAlias type="com.GDEG.myapp.DTO.likeDTO" alias="like"/>
+		<typeAlias type="com.GDEG.myapp.DTO.trainerDTO" alias="trainer"/>
 	</typeAliases>
 </configuration>

@@ -9,4 +9,5 @@ public class likeDTO {
  private int feednum;
  private String clientid;
  private int likecheck;
+
 }

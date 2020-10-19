@@ -20,13 +20,13 @@ import com.GDEG.myapp.Service.SService;
 @Controller
 @RequestMapping("/feed/*")
 public class feedAjaxController {
+	
 	ModelAndView mav = new ModelAndView();
-
-	@Autowired
-	private SService svc;
 	
 	@Autowired
 	private FeedService fsvc;
+	@Autowired
+	private SService svc;
 	
 	List<FeedDTO> feed = new ArrayList<FeedDTO>();
 	
@@ -62,15 +62,10 @@ public class feedAjaxController {
 	}
 	@RequestMapping(value = "/feedSearch")
 	public @ResponseBody List<FeedDTO> feedSearch(@RequestParam(value = "key") String key) {
-		System.out.println("===========================================================");
-		System.out.println("FCon_key :" + key);
-		System.out.println("===========================================================");
+		
 		
 		feed = svc.feedSearch(key);
 		
-		System.out.println("===================================================================================================");
-		System.out.println("Ser_feed : " + feed);
-		System.out.println("===================================================================================================");
 		return feed;
 	}
 //	좋아요

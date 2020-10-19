@@ -10,34 +10,16 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.15.0/standard-all/ckeditor.js"></script>
-<link
-	href="${pageContext.request.contextPath}/resources/css/sidebar.css"
-	type="text/css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/sidebar.css" type="text/css" rel="stylesheet"/>
 <link
 	href="${pageContext.request.contextPath}/resources/css/menubar.css"
 	type="text/css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/feed.css"
 	type="text/css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/resources/css/modalWindow.css" type="text/css" rel="stylesheet"/>
-<style>
-html, body, div, span, applet, object, iframe, table, caption, tbody,
-	tfoot, thead, tr, th, td, del, dfn, em, font, img, ins, kbd, q, s, samp,
-	small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p,
-	blockquote, pre, a, abbr, acronym, address, big, cite, code, dl, dt, dd,
-	ol, ul, li, fieldset, form, label, legend, button {
-	vertical-align: baseline;
-	font-family: inherit;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0;
-}
-#boardWriteArea{
-display:none;
-}
-</style>
+<link
+	href="${pageContext.request.contextPath}/resources/css/modalWindow.css"
+	type="text/css" rel="stylesheet" />
+
 </head>
 
 <body onload="load()">
@@ -50,15 +32,17 @@ display:none;
 		<input type="checkbox" id="menub"> <label for="menub">
 			<span></span> <span></span> <span></span>
 		</label>
-<div class="menubar">
-<button onclick="location.href='feed'">피드</button>
-<button onclick="location.href='board'">게시판</button>
-<button onclick="location.href='report'">고객센터</button>
-</div>
+		<div class="menubar">
+			<button onclick="location.href='feed'">피드</button>
+			<button onclick="location.href='board'">게시판</button>
+			<button onclick="location.href='report'">고객센터</button>
+		</div>
 
 		<!-- 로고 -->
-		<div id="logo"><a href="mainController">로고</a></div>
-<img alt="로고.png" src="resources/fileUpload/로고(임시).png" width="250px">
+		<div id="logo">
+			<a href="mainController">로고</a>
+		</div>
+
 
 		<div id="loginCheck">
 			<c:choose>
@@ -224,52 +208,56 @@ display:none;
 			</c:choose>
 		</div>
 	</div>
-	
-	<div id ="board">
-<div id="boardNav">
-	<button onclick="viewAll()">전체보기</button>
-	<button onclick="viewHealth()">헬스게시판보기</button>
-	<button onclick="viewFitness()">피트니스게시판보기</button>
-</div>
-<!-- 게시판이 나오는 div -->
-<div id="boardArea">
-    <input type="checkbox" id="writeboard">
-<label for="writeboard">작동</label>
-<div>
-	<div>
-		<form action='boardWrite' method='POST' id='boardWriteForm' enctype='multipart/form-data'>
-<table>
-<tr>
-<td>카테고리</td>
-<td><select name='rq'><option value='H' selected>헬스</option><option value='F'>피트니스</option></select></td>
-</tr>
-<tr>
-<td>작성자</td>
-<td><input type="text" name="fid" size="39" value='${member.id}' readonly></td>
-</tr>
-<tr>
-<td>제목</td>	
-<td><input type='text' name='title' size='39'></td>
-</tr>
-<tr>
-<td>내용</td>
-<td><textarea rows="20" cols="40" name="content" id="content">
-</textarea>
-</td>
-</tr>
-<tr>
-<td>첨부파일</td>
-<td><input type='file' name='file'></td></tr>
-</table>
-</form>
-<input type='button' id='deleteInputTag' value='작성하기'/>
-	</div>
-	<label for="writeboard"></label>
-</div>
-</div>
-<!-- 글작성을 위한 div -->
+<div id="Contents">
+	<div id="board">
+		<div id="boardNav">
+			<button onclick="viewAll()">전체보기</button>
+			<button onclick="viewHealth()">헬스게시판보기</button>
+			<button onclick="viewFitness()">피트니스게시판보기</button>
+		</div>
+		<!-- 게시판이 나오는 div -->
+			<input type="checkbox" id="writeboard">
+			 <label	for="writeboard">작동</label>
+			<div>
+				<div>
+					<form action='boardWrite' method='POST' id='boardWriteForm'
+						enctype='multipart/form-data'>
+						<table>
+							<tr>
+								<td>카테고리</td>
+								<td><select name='rq'><option value='H' selected>헬스</option>
+										<option value='F'>피트니스</option></select></td>
+							</tr>
+							<tr>
+								<td>작성자</td>
+								<td><input type="text" name="fid" size="39"
+									value='${member.id}' readonly></td>
+							</tr>
+							<tr>
+								<td>제목</td>
+								<td><input type='text' name='title' size='39'></td>
+							</tr>
+							<tr>
+								<td>내용</td>
+								<td><textarea rows="20" cols="40" name="content"
+										id="content">
+								</textarea></td>
+							</tr>
+							<tr>
+								<td>첨부파일</td>
+								<td><input type='file' name='file'></td>
+							</tr>
+						</table>
+					</form>
+					<input type='button' id='deleteInputTag' value='작성하기' />
+				</div>
+				<label for="writeboard"></label>
+			</div>
+		</div>
+		<div id="boardArea">
+		<!-- 글작성을 위한 div -->
 
- <script>
+		<script>
     CKEDITOR.plugins.addExternal('a11ychecker', 'https://ckeditor.com/docs/ckeditor4/4.15.0/examples/assets/plugins/a11ychecker/', 'plugin.js');
 
     // Performance optimization:
@@ -316,9 +304,10 @@ display:none;
     });
   </script>
 
-<!-- 글수정을 위한 div -->
-<div id="boardModifyArea"></div>
-</div>
+		<!-- 글수정을 위한 div -->
+		<div id="boardModifyArea"></div>
+	</div>
+	</div>
 </body>
 
 <script>
@@ -476,7 +465,7 @@ function boardDelete(num){
 		type : "POST",
 		url : "board/boardDelete",
 		data : {"num":num},
-		success : function(result){
+		success : function(){
 			viewBoardFunction()
 		},
 			error : function(){

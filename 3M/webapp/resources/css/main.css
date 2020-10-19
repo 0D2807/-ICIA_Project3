@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#Contents-first{
+	width:100%;
+	margin:0;
+	height:180px;
+	margin-bottom: 10px;
+}
+#weather{
+	width:50%;
+	/* background-color: #ff0; */
+	border-right:1px solid black;
+	height:180px;
+	max-width:750px;
+	min-width: 400px;
+	float:left;
+	border: none;
+}
+#letter{
+	max-width:750px;
+	min-width: 400px;
+	width:50%;
+	border: none;
+	/* background-color: #0ff; */
+	height:180px;
+	float:right;
+}
+#trainer{
+	clear:both;
+	/* background-color:#fff000; */
+	display: hidden;
+	height:400px;
+	width:100%;
+}
+#Sales{
+	margin-top:10px;
+	/* background-color:#000fff; */
+	width:100%;
+	height:150px;
+}
+

@@ -75,10 +75,12 @@ public class ajaxController {
 	// 팔로우 피드 목록
 	@RequestMapping(value = "/allFollowView")
 	public @ResponseBody List<FeedDTO> allFollowView(@RequestParam(value = "id") String id) {
-		System.out.println("컨트롤러1");
 		List<FeedDTO> follower= svc.allFollowView(id);
-		System.out.println("컨트롤러2"+follower);
 		return follower;
 	}
 	
+	@RequestMapping(value = "/boardDelete")
+	public @ResponseBody void boardDelete(@RequestParam(value = "num") int num) {
+		svc.boardDelete(num);
+	}
 }

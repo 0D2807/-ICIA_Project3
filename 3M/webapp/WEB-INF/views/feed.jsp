@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% int j = 0; %>
+<%
+	int j = 0;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +18,18 @@
 	type="text/css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/feed.css"
 	type="text/css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/resources/css/modalWindow.css" type="text/css" rel="stylesheet"/>
-<link href="${pageContext.request.contextPath}/resources/css/feedwrite.css" type="text/css" rel="stylesheet"/>
-<link href="${pageContext.request.contextPath}/resources/css/like.css" type="text/css" rel="stylesheet"/>
+<link
+	href="${pageContext.request.contextPath}/resources/css/modalWindow.css"
+	type="text/css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/feedwrite.css"
+	type="text/css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/like.css"
+	type="text/css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/css/feedwrite.css"
+	type="text/css" rel="stylesheet" />
 <style>
-html, body, div, span, applet, object, iframe, table, caption, tbody,
+	html, body, div, span, applet, object, iframe, table, caption, tbody,
 	tfoot, thead, tr, th, td, del, dfn, em, font, img, ins, kbd, q, s, samp,
 	small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p,
 	blockquote, pre, a, abbr, acronym, address, big, cite, code, dl, dt, dd,
@@ -34,13 +43,13 @@ html, body, div, span, applet, object, iframe, table, caption, tbody,
 	margin: 0;
 	border: 0;
 }
-.oneFeedDiv{
-position:relative;}
+
+.oneFeedDiv {
+	position: relative;
+}
 </style>
 </head>
-
 <body onload="load()">
-
 	<!-- 탑배너 -->
 	<div id="topbanner">
 
@@ -49,16 +58,15 @@ position:relative;}
 		<input type="checkbox" id="menub"> <label for="menub">
 			<span></span> <span></span> <span></span>
 		</label>
-<div class="menubar">
-<button onclick="location.href='feed'">피드</button>
-<button onclick="location.href='board'">게시판</button>
-<button onclick="location.href='report'">고객센터</button>
-</div>
-
+		<div class="menubar">
+			<button onclick="location.href='feed'">피드</button>
+			<button onclick="location.href='board'">게시판</button>
+			<button onclick="location.href='report'">고객센터</button>
+		</div>
 		<!-- 로고 -->
-		<div id="logo"><a href="mainController"><img alt="로고.png" src="resources/fileUpload/로고(임시).png" width="150px"></a></div>
-
-
+		<div id="logo">
+			<a href="mainController">로고</a>
+		</div>
 		<div id="loginCheck">
 			<c:choose>
 				<c:when test="${sessionScope.member != null }">
@@ -167,9 +175,7 @@ position:relative;}
 								<input type="submit" value="로그인">
 							</form>
 						</div>
-
 					</div>
-
 					<input type="checkbox" id="menuicon2">
 					<label for="menuicon2" id="signup">SIGNUP</label>
 					<div class="sidebar2">
@@ -224,32 +230,31 @@ position:relative;}
 		</div>
 	</div>
 	<!-- 피드 최근글 -->
+	<div id="Contents">
 	<div id="feedArea">
-	<c:forEach var="feed" items="${MyFeedList}" varStatus="status" begin="0" end="0">
-		<div id='lastFeed'>
-			<p>
-				작성자 : <span>${feed.fid}</span>
-			</p>
-			<p>
-				작성일 : <span>${feed.fdate}</span>
-			</p>
-			<p>
-				제목 : <span>${feed.title}</span>
-			</p>
-			<br>
-			<p>
-				내용 : <img src='resources/fileUpload/"+lastFeed[0].filename+"'
-					alt='첨부파일' /><span>${feed.conten}</span>
-			</p>
-			<br>
-			<p>
-				조회수 : <span>${feed.hit}</span>
-			</p>
-			
-		</div>
+		<c:forEach var="feed" items="${MyFeedList}" varStatus="status"
+			begin="0" end="0">
+			<div id='lastFeed'>
+				<p>
+					작성자 : <span>${feed.fid}</span>
+				</p>
+				<p>
+					작성일 : <span>${feed.fdate}</span>
+				</p>
+				<p>
+					제목 : <span>${feed.title}</span>
+				</p>
+				<br>
+				<p>
+					내용 : <img src='resources/fileUpload/"+lastFeed[0].filename+"'
+						alt='첨부파일' /><span>${feed.conten}</span>
+				</p>
+				<br>
+				<p>
+					조회수 : <span>${feed.hit}</span>
+				</p>
+			</div>
 		</c:forEach>
-	
-			
 		<div id='myFeed'>
 			<table>
 				<tr>
@@ -281,44 +286,62 @@ position:relative;}
 			</div>
 		</div>
 		<div id='feedBoardArea'>
-		<c:forEach var="feed" items="${feeds}">
-		<div id="<%=j%>" class="oneFeedDiv">
-		<p class='feedWriter'>작성자 : ${feed.fid}</p>
-		<p class='feedTitle'>제목 : ${feed.title }</p>
-		<img src='resources/fileUpload/${feed.filename}' alt='사진' width="400px"/>
-		<p class='feedConten'>내용 : ${feed.conten}</p>
-		<c:choose>
-		<c:when test="${like.id eq sessionScope.member.id}&&${like.feednum eq feed.fnum}">	
-		<input type="checkbox" id="${feed.fnum}" class="likeBtn" onclick="feedLike(${feed.fnum})" checked="checked">
-		<label for="${feed.fnum}" class="likelabel"></label>
-		<div class="heart like" class="likediv"></div>
-		</c:when>
-		<c:otherwise>
-		<input type="checkbox" id="${feed.fnum}" class="likeBtn" onclick="feedLike(${feed.fnum})">
-		<label for="${feed.fnum}" class="likelabel"></label>
-		<div class="heart" class="likediv">
+			<c:forEach var="feed" items="${feeds}">
+
+				<div id="<%=j%>" class="oneFeedDiv">
+
+					<p class='feedWriter'>작성자 : ${feed.fid}</p>
+
+					<p class='feedTitle'>제목 : ${feed.title }</p>
+
+					<img src='resources/fileUpload/${feed.filename}' alt='사진'
+						width="400px" />
+
+					<p class='feedConten'>내용 : ${feed.conten}</p>
+					<c:forEach var="like" items="${like}">
+						<c:if test="${like.clientid eq sessionScope.member.id}&&${like.feednum eq feed.fnum}">
+							<c:choose>
+
+								<c:when test="${like.clientid eq sessionScope.member.id}&&${like.feednum eq feed.fnum}">
+
+									<input type="checkbox" id="${feed.fnum}" class="likeBtn"
+										onclick="feedLike(${feed.fnum})" checked="checked">
+									<label for="${feed.fnum}" class="likelabel"></label>
+									<div class="heart like" class="likediv"></div>
+								</c:when>
+								<c:otherwise>
+									<input type="checkbox" id="${feed.fnum}" class="likeBtn"
+										onclick="feedLike(${feed.fnum})">
+									<label for="${feed.fnum}" class="likelabel"></label>
+									<div class="heart" class="likediv"></div>
+
+								</c:otherwise>
+
+							</c:choose>
+							<%j++;%>
+						</c:if>
+					</c:forEach>
+				</div>
+
+			</c:forEach>
+			<input type="checkbox" id="feedwrite"> <label for="feedwrite">피드
+				작성</label>
+			<div>
+				<div>
+					<form action="feedWriterFrom" method="post"
+						enctype="multipart/form-data">
+						<input type="text" name="fid" value="${member.id}"> <input
+							type="text" name="title" id="title" placeholder="제목">
+						<textarea name="conten" id="conten" cols="30" rows="10"
+							placeholder="내용"></textarea>
+						<input type="file" name="file"> <input type="submit"
+							value="피드작성">
+					</form>
+				</div>
+				<label for="feedwrite"></label>
+			</div>
 		</div>
-		</c:otherwise>
-		</c:choose>
-		</div>
-		<%j++; %>
-		</c:forEach>
-		
-<input type="checkbox" id="feedwrite">
-<label for="feedwrite">피드 작성</label>
-<div>
-	<div>
-	<form action="feedWriterFrom" method="post" enctype="multipart/form-data">
-        <input type="text" name="fid" value="${member.id}">
-        <input type="text" name="title" id="title" placeholder="제목">
-        <textarea name="conten" id="conten" cols="30" rows="10" placeholder="내용"></textarea>
-        <input type="file" name="file">
-        <input type="submit" value="피드작성">
-    </form>
 	</div>
-	<label for="feedwrite"></label>
-</div>
-		</div>
 	</div>
 	<br />
 
@@ -541,22 +564,6 @@ function followerFeedViewBtn(){
  			});
  			}
  }
- function allFollowFeedView(result){
- 	var j = 0;
- 	
- 	feedoutput+="<div id='"+j+"'>";
- 	for(var i in result){
- 		feedoutput+="<p class='feedWriter'>작성자 : "+result[i].fid+"</p>";
- 		feedoutput+="<p class='feedTitle'>제목 : "+result[i].title+"</p>";
- 		feedoutput+="<img src='resources/fileUpload/"+result[i].filename+"' alt='사진'/>";
- 		feedoutput+="<p class='feedConten'>내용 : "+result[i].conten+"</p>";
- 		feedoutput+="<button onclick='likeBtn("+result[i].fnum+")'>좋아요</button>"
- 		
- 		}
- 	feedoutput+="</div>";
- 		j++;
- 		feedBoardArea.innerHTML=feedoutput;
- 	
- }
+
 </script>
 </html>

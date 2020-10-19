@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="Feed">
+ 	<insert id="feedwriterFile" parameterType="feed">
+ 		INSERT INTO FEED (FNUM, FID, TITLE, CONTEN, FDATE, FILENAME)
+ 		VALUES(SEQ_FNUM.nextval, #{fid}, #{title}, #{conten}, SYSDATE, #{filename})
+ 	</insert>
+ 	<!-- 피드 상세보기 -->
+ 	<select id="FeedView" resultType="feed">
+	SELECT * FROM FEED WHERE FID=#{id} ORDER BY FDATE DESC
+ 	</select>
+ 	<!-- 피드 수정하기 -->
+ 	<update id="modifyProcess" parameterType="feed">
+ 		UPDATE FEED SET TITLE=#{title}, CONTEN=#{conten}, FILENAME=#{filename} WHERE FNUM =#{fnum}
+ 	</update>
+ 	<!-- 피드 삭제 -->
+ 	<delete id ="FeedDelete" parameterType="int">
+ 		DELETE FROM FEED WHERE FNUM=#{fnum}
+ 	</delete> 
+ 	<select id="myFeed" parameterType="String" resultType="feed">
+ 	SELECT * FROM FEED WHERE FID=#{id} ORDER BY FDATE DESC
+ 	</select>
+ 	<select id="allFeedView" resultType="feed">
+ 	SELECT * FROM FEED ORDER BY FDATE DESC
+ 	</select>
+ 	<select id="allFollowView" parameterType="String" resultType="feed">
+ 	SELECT * FROM FEED WHERE FID=#{id}
+ 	</select>
+ 	<select id="follower" parameterType="String" resultType="feed">
+ 	SELECT * FROM FEED WHERE FID=#{id} 
+ 	</select>
+ 	<select id="Search" parameterType="String" resultType="feed">
+ 	SELECT * FROM FEED WHERE TITLE LIKE '%'||#{title}||'%' 
+ 	</select>
+ 	<select id="lastFeed" parameterType="String" resultType="feed">
+ 	SELECT * FROM FEED WHERE FID=#{id}  
+ 	</select>
+ 	<select id="feedmodify" parameterType="String" resultType="feed">
+ 		SELECT * FROM FEED WHERE FID=#{id}
+ 	</select>
+ </mapper>

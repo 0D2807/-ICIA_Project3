@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace ="Member">
+ 	
+<!-- 회원가입 -->
+	<insert id="join" parameterType="member">
+		INSERT INTO CLIENT VALUES
+		(#{id}, #{pw}, #{cname}, #{health}, #{fitness}, 
+		0, #{email}, #{gender}, #{filename}, #{birth}, 0,#{intro})
+	</insert>	
+<!-- 암호화로그인 -->
+ 	<select id="encPw" parameterType="String" resultType="String">
+ 		SELECT PW FROM CLIENT WHERE ID=#{id}
+ 	</select>
+<!-- 로그인 -->
+ 	<select id="login" parameterType="String" resultType="String">
+ 		SELECT ID FROM CLIENT WHERE ID=#{id}
+ 	</select>
+ 	<select id="member" parameterType="String" resultType="member">
+ 		SELECT * FROM CLIENT WHERE ID=#{id} 	
+ 	</select>
+<!-- 회원정보수정 -->
+	<update id="process" parameterType="member">
+		UPDATE CLIENT SET CNAME=#{cname}, GENDER=#{gender},
+ 		EMAIL=#{email}, HEALTH=#{health}, FITNESS=#{fitness}, FILENAME=#{filename}, INTRO=#{intro}
+		WHERE ID=#{id}
+	</update>
+	<select id="proView" parameterType="String" resultType="member">
+		SELECT * FROM CLIENT WHERE ID=#{id}
+	</select>
+	<select id="mView" parameterType="String" resultType="member">
+ 		SELECT * FROM CLIENT WHERE ID=#{id}
+ 	</select>
+ 	<select id="getView" parameterType="String" resultType="member">
+ 		SELECT * FROM CLIENT WHERE ID=#{id}
+ 	</select>
+ 	<select id="memberList" parameterType="String" resultType="member">
+ 		SELECT * FROM CLIENT WHERE ID=#{id}
+ 	</select>
+
+ 	
+ </mapper>
+ 

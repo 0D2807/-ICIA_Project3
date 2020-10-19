@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace ="Board">
+ 	<insert id="boardWrite" parameterType="board">
+ 	INSERT INTO FBOARD(NUM, TITLE, CONTENT, FDATE, FID, HIT, FILENAME,RQ)
+ 	 VALUES(FB_SQE.NEXTVAL,#{title},#{content},SYSDATE,#{fid},0,#{filename},#{rq})
+ 	</insert>
+ 	<select id="boardList" resultType="board">
+ 	SELECT * FROM FBOARD ORDER BY FDATE DESC
+ 	</select>
+ 	<select id="boardHealthList" resultType="board">
+ 	SELECT * FROM FBOARD WHERE RQ ='H' ORDER BY FDATE DESC
+ 	</select>
+ 	<select id="boardFitnessList" resultType="board">
+ 	SELECT * FROM FBOARD WHERE RQ = 'F' ORDER BY FDATE DESC
+ 	</select>
+ 	<select id="boardView" resultType="board" parameterType="int">
+ 	SELECT * FROM FBOARD WHERE NUM = #{num}
+ 	</select>
+ 	<update id="boardmodify" parameterType="board">
+ 	UPDATE FBOARD SET TITLE=#{title}, CONTENT=#{content}, FILENAME=#{filename},RQ=#{rq} WHERE NUM=#{num}
+ 	</update>
+ 	<delete id="boardDelete" parameterType="int">
+ 	DELETE FROM FBOARD WHERE NUM=#{num}
+ 	</delete>
+ </mapper>
+ 

@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.heart {
+   width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-position:0;
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+  background-position: 0 0;
+  
+}
+input[class="likeBtn"]:checked + label+ div{
+    transition: background 1s steps(28);
+  
+  animation: fave-heart 1s steps(28);
+ background-position: -2800px 0;
+}
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}
+.likelabel{
+width:100px;
+height:100px;
+position:absolute;
+left:47%;
+top:42%;
+cursor:pointer;
+z-index:999;
+}
+.likediv{
+position:absolute;
+left:50px;
+top:50px;
+z-index:1;
+}
+.likeBtn{
+	display:none;
+}
+

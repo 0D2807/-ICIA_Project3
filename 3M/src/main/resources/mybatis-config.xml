@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.GDEG.myapp.DTO.memberDTO" alias="member" />
+		<typeAlias type="com.GDEG.myapp.DTO.boardDTO" alias="board"/>
+		<typeAlias type="com.GDEG.myapp.DTO.massageDTO" alias="massage"/>
+		<typeAlias type="com.GDEG.myapp.DTO.reportDTO" alias="Report"/>
+		<typeAlias type="com.GDEG.myapp.DTO.FeedDTO" alias="feed"/>
+		<typeAlias type="com.GDEG.myapp.DTO.FollowerDTO" alias="follow"/>
+		<typeAlias type="com.GDEG.myapp.DTO.trainerDTO" alias="trainer"/>
+		<typeAlias type="com.GDEG.myapp.DTO.likeDTO" alias="like"/>
+	</typeAliases>
+</configuration>
